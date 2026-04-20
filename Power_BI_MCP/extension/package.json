@@ -1,0 +1,73 @@
+{
+    "name":  "powerbi-modeling-mcp",
+    "displayName":  "Power BI Modeling MCP Server",
+    "description":  "The Power BI Modeling MCP Server, brings Power BI semantic modeling capabilities to your agents.",
+    "version":  "0.1.9",
+    "publisher":  "analysis-services",
+    "engines":  {
+                    "vscode":  "^1.80.0"
+                },
+    "tags":  [
+                 "Power BI",
+                 "Fabric",
+                 "MCP",
+                 "Language-Model-Tools",
+                 "AI",
+                 "Agent"
+             ],
+    "categories":  [
+                       "AI",
+                       "Chat"
+                   ],
+    "activationEvents":  [
+                             "onLanguageModelTool:*"
+                         ],
+    "icon":  "./assets/powerbi-logo.png",
+    "main":  "./out/extension.js",
+    "repository":  {
+                       "type":  "git",
+                       "url":  "https://github.com/microsoft/powerbi-modeling-mcp"
+                   },
+    "contributes":  {
+                        "mcpServerDefinitionProviders":  [
+                                                             {
+                                                                 "id":  "powerbi-modeling-mcp.servers",
+                                                                 "label":  "Power BI Modeling MCP Server"
+                                                             }
+                                                         ],
+                        "configuration":  {
+                                              "type":  "object",
+                                              "title":  "Power BI Modeling MCP Server Extension configuration",
+                                              "properties":  {
+                                                                 "args":  {
+                                                                              "type":  "string",
+                                                                              "default":  "--start",
+                                                                              "description":  "Command-line arguments passed to the MCP server (e.g., \u0027--start --skipconfirmation --readonly\u0027)"
+                                                                          },
+                                                                 "environmentVariables":  {
+                                                                                              "type":  "string",
+                                                                                              "description":  "Environment variables as comma-separated key=value pairs (e.g., \u0027PBI_MODELING_MCP_CLIENT_ID = xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\u0027)"
+                                                                                          }
+                                                             }
+                                          }
+                    },
+    "scripts":  {
+                    "vscode:prepublish":  "npm run compile",
+                    "compile":  "tsc -p ./",
+                    "watch":  "tsc -watch -p ./",
+                    "pretest":  "npm run compile",
+                    "package":  "npx @vscode/vsce package",
+                    "package:win32-x64":  "npm run compile \u0026\u0026 npx @vscode/vsce package --target win32-x64",
+                    "package:win32-arm64":  "npm run compile \u0026\u0026 npx @vscode/vsce package --target win32-arm64",
+                    "package:darwin-arm64":  "npm run compile \u0026\u0026 npx @vscode/vsce package --target darwin-arm64",
+                    "package:all":  "npm run package:win32 \u0026\u0026 npm run package:win32-arm64 \u0026\u0026 npm run package:darwin-arm64",
+                    "provideCred":  "artifacts-npm-credprovider \u0026\u0026 npm install"
+                },
+    "devDependencies":  {
+                            "@types/vscode":  "^1.80.0",
+                            "@types/node":  "^18.x",
+                            "@vscode/test-electron":  "^2.3.x",
+                            "typescript":  "^5.x",
+                            "@vscode/vsce":  "^2.x"
+                        }
+}
