@@ -1,7 +1,7 @@
 [project]
 name = "mcp-training-project-1"
 version = "0.1.0"
-description = "Add your description here"
+description = "Trying to create an MCP server and MCP client use-cases. Main objective is to try and connect to the PowerBI MCP Server"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
